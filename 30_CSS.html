@@ -51,6 +51,54 @@
 
 		.boxmodel, .chichenitza {width: 260px;}
 
+		.infotext {
+			background-color: lightgray;
+			margin-bottom: 10px;
+		}
+		
+		#chichenitza-container, 
+		#chichenitza-container * {
+			background-color: #A1A2A1;
+		}
+
+		#chichenitza-container {
+			position: relative;
+			height: 238px;
+			width: 250px;
+
+			margin-left: 4px;
+
+			border: 4px solid white;
+			
+		}
+
+		#chichenitza-container .chichenitza-box {
+			position: absolute;
+			top: 13px; 
+			left: 13px;
+			height: calc(100% - 26px);
+			width: calc(100% - 26px);
+
+			border: 4px solid white;
+		}
+
+		#chichenitza-container p {
+			font-size: 13px;
+			text-align: center;
+			padding: 7.65px 0;
+		}
+
+		#chichenitza-container p span.love {
+			color: darkred;
+			font-weight: bold;
+			font-style: italic;
+		}
+
+		#chichenitza-container p span.itza {
+			color: white;
+			font-weight: bold;
+			text-decoration: underline;
+		}
 	</style>
 </head>
 <body>
@@ -96,8 +144,27 @@
 	
 		<h2>Exercice</h2>
 		<div>Mimic the following structure using HTML and CSS.</div>
-		<div><img class="chichenitza" src="img/chichenitza.png"></div>
 
+		<div><img class="chichenitza" src="img/chichenitza.png"></div>
+		
+		<div class="infotext">Chichénitza</div>
+
+		<div id="chichenitza-container">
+			<div class="chichenitza-box">
+				<div class="chichenitza-box">
+					<div class="chichenitza-box">
+						<div class="chichenitza-box">
+							<p>
+								Web<br>
+								developers<br>
+								<span class="love">love</span> the<br>
+								<span class="itza">Chichén Itza</span>.
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 		<h2>More resources</h2>
 		<ul>
 			<li><a href="https://htmlcheatsheet.com/css/" target="_blank">CSS cheat sheet</a></li>

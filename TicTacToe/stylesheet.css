@@ -1,0 +1,29 @@
+.tictactoe #hint{
+    font-size: 100px;
+}
+.tictactoe #grid-container{
+    display: grid;
+    grid-template-columns:300px 300px 300px;
+    grid-template-rows: 300px 300px 300px;
+    text-align: center;
+    padding: 20px 0;
+    font-size: 30px;
+}
+.tictactoe button{
+    width: 250px;
+    height: 250px;
+    background-color: white;
+    font: 0/0 transparent;
+    border:1px solid black;
+    margin: 0px;
+}
+.tictactoe [aria-label="x"] {
+    background-image: url('x.png');
+    height:250px;
+    width:250px;
+}
+.tictactoe [aria-label="o"] {
+    background-image: url('o.png');
+    height:250px;
+    width:250px;
+}

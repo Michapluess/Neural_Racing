@@ -5,7 +5,8 @@ from Monaco import setupMonaco
 from Traces import clearTraces, saveTraces
 
 
-caramount = 64
+lastperformance = 0
+caramount = 20
 # Race between two random cars
 # Replace dummy network with your network later
 
@@ -22,12 +23,12 @@ def step(car):
 		car.control()
 		car.move()
 		car.updateScore()
-		if car.checkCollision() or car.score > 2000 or (car.score+5)/car.age <0.01:
+		if car.checkCollision() or car.score > 2000 or (car.score+5)/car.age <(lastperformance * 0.4) or (car.score+5)/car.age <0.01:  #letztes or mit (car.score+5)/car.age < timescoreschnellstesautoletztegeneration/scorelimit *0.8 
 			car.gameOver = True
 
 clearTraces()
 
-for generation in range(1024):
+for generation in range(50):
 	livingCars = len(cars)
 	while livingCars > 0:
 		livingCars = 0
@@ -41,6 +42,7 @@ for generation in range(1024):
 	cars.sort(key=lambda car: car.score, reverse = True)
 	best = cars[0]
 	best.nn.savenn()
+	lastperformance = (best.score+5)/car.age 
 	saveTraces(cars, generation)
 
 	cars = []
@@ -51,6 +53,6 @@ for generation in range(1024):
 		cars[i].nn = best.nn.clone()
 		cars[i].nn.randomAdjust(3*((i*i)/(caramount*caramount)))
 	print("generation", generation + 1)
-
+	print(best.score, best.age)
 
 

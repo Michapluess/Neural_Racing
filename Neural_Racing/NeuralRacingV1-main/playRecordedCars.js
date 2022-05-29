@@ -37,7 +37,7 @@ function playRecordedCars() {
 	}
 
 	async function run() {
-		let generation = 0
+		let generation = 40
 		let found = true
 		while(found) {
 			try {

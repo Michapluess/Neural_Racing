@@ -21,7 +21,7 @@ function playRecordedCars() {
 					}
 				}
 				if(cars.some(c=>!c.gameOver)) {
-					steps++
+					steps += 4
 					if(steps%50 == 0) console.log(steps);
 					requestAnimationFrame(step)
 				}

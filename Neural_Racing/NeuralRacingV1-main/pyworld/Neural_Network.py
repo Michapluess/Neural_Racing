@@ -4,6 +4,13 @@ from sys import api_version
 from turtle import window_height
 from math import exp
 from copy import deepcopy
+import json
+import os
+
+
+nnpath = "../data"
+
+
 
 
 def sigmoid(x):
@@ -73,10 +80,30 @@ class Neural_Network:
                 self.biases[layer][neuron] += normalvariate(0, amount)
                 for arrow in range(len(self.weights[layer][neuron])):
                     self.weights[layer][neuron][arrow]+= normalvariate(0, amount)
+    def savenn(self):
+        files = os.listdir(nnpath)
+        if len(files) > 0:
+            os.remove(nnpath + "/nn.json")
+        nndata = []
+        nndata.append(self.weights)
+        nndata.append(self.biases)
+        f = open(nnpath + "/nn"+".json", "w")
+        json.dump(nndata, f)
+        f.close()
+	
+    
+
+
+
+
+
 
 nn = Neural_Network(6)
 nn.addLayer(4)
 nn.addLayer(2)
 output = nn.feedForward([0.5, 0.5, 0.5, 0.5, 0.5, 0.5])
+print("----------")
 print(nn.weights)
-print(output)
+print("----------")
+print(nn.biases)
+print("----------")

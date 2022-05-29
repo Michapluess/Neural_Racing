@@ -4,13 +4,15 @@ from CarAI import *
 from Monaco import setupMonaco
 from Traces import clearTraces, saveTraces
 
+
+caramount = 64
 # Race between two random cars
 # Replace dummy network with your network later
 
 track = setupMonaco()
 
 cars = []
-for i in range(30):
+for i in range(caramount):
 	cars.append(CarAI(track))
 
 def step(car):
@@ -25,7 +27,7 @@ def step(car):
 
 clearTraces()
 
-for generation in range(10):
+for generation in range(1024):
 	livingCars = len(cars)
 	while livingCars > 0:
 		livingCars = 0
@@ -33,21 +35,22 @@ for generation in range(10):
 			step(car)
 			if not car.gameOver:
 				if livingCars == 0:
-					print(car.score, car.gameOver, car.x, car.y)
-				livingCars += 1
-		print(livingCars)
+					#print(car.score, car.gameOver, car.x, car.y)
+					livingCars += 1
+		# print(livingCars)
 	cars.sort(key=lambda car: car.score, reverse = True)
 	best = cars[0]
-	print(best.score)
+	best.nn.savenn()
 	saveTraces(cars, generation)
+
 	cars = []
 	cars.append(CarAI(track))
 	cars[0].nn = best.nn.clone()
-	for i in range(1,30):
+	for i in range(1,caramount):
 		cars.append(CarAI(track))
 		cars[i].nn = best.nn.clone()
-		cars[i].nn.randomAdjust(0.1*i)
+		cars[i].nn.randomAdjust(3*((i*i)/(caramount*caramount)))
+	print("generation", generation + 1)
 
 
-for car in cars:
-	print(car.score, car.x, car.y, car.getLifetime())
+
